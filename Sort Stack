@@ -1,0 +1,50 @@
+class stack:
+    
+    def __init__ (self):
+        self.List=[]
+        self.size=len(self.List)
+    def push(self,pushitem):
+        self.List.append(pushitem)
+        #print 'Pushed',self.List[-1]
+        self.size+=1
+        
+        
+    def pop(self):
+        if len(self.List)!=0:
+            temp=self.List[-1]
+            del self.List[-1]
+            self.size-=1
+            return temp
+    def peak(self):
+        if len(self.List)!=0:
+            tmp=self.List[-1]
+            return tmp
+        
+def sortstack(s):
+    sl=s.size
+    st=stack()
+    k=1
+    while(k<=sl):
+        tmp=s.pop()
+        for i in range(sl-k):
+            if tmp<s.peak():
+                st.push(tmp)
+                tmp=s.pop()
+            
+            else:
+                st.push(s.pop())
+        s.push(tmp)
+        print tmp
+        for i in range(sl-k):
+            #print st.peak()
+            s.push(st.pop())
+        print k,"th round finished"    
+        k+=1
+s=stack()
+s.push(5)
+s.push(1)
+s.push(3)
+s.push(4)
+s.push(2)
+#print s.size
+sortstack(s)

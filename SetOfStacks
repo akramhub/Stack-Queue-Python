@@ -1,0 +1,40 @@
+class SetOfStacks:
+    def __init__(self,thr):
+        self.Thr=thr
+        self.array2=[]
+        self.array2.append([])
+        self.Last=0
+        
+    def push(self,pushitem):
+        if len(self.array2[self.Last])==self.Thr:
+            self.Last+=1
+            self.array2.append([])
+               
+        self.array2[self.Last].append(pushitem)
+        
+    def pop(self):
+        print "poped from stack number", self.Last+1
+        if len(self.array2[self.Last])==0 and self.Last!=0:
+            #print "poped from stack number", self.Last
+            self.Last-=1
+        temp=self.array2[self.Last][-1]
+        del self.array2[self.Last][-1]
+        return temp
+S=SetOfStacks(3)
+S.push(21)
+S.push(22)
+S.push(23)
+S.push(70)
+S.push(24)
+S.push(25)
+S.push(26)
+S.push(27)
+print S.pop()
+print S.pop()
+print S.pop()
+print S.pop()
+print S.pop()
+print S.pop()
+print S.pop()
+print S.pop()
+print S.pop()

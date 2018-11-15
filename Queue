@@ -1,0 +1,55 @@
+class stack:
+    
+    def __init__ (self):
+        self.List=[]
+        self.size=len(self.List)
+    def push(self,pushitem):
+        self.List.append(pushitem)
+        print 'Pushed',self.List[-1]
+        
+        
+    def pop(self):
+        if len(self.List)!=0:
+            temp=self.List[-1]
+            del self.List[-1]
+            self.size-=1
+            return temp
+        
+        
+            
+
+class queue2s:
+    def __init__(self):
+        self.s1=stack()
+        self.s2=stack()
+        self.size1=0
+        self.size2=0
+    def push(self,pushitem):
+        self.s1.push(pushitem)
+        self.size1+=1
+        #print "pushque"
+        
+    def pop(self):
+        while(self.size1>0):
+            self.s2.push(self.s1.pop())
+            self.size2+=1
+            self.size1-=1
+        print self.s2.pop(), "poped-------------"
+        self.size2-=1
+        while(self.size2>0):
+            self.s1.push(self.s2.pop())
+            self.size2-=1
+            self.size1+=1
+            
+            
+q1=queue2s()
+q1.push(34)
+q1.push(32)
+q1.push(56)
+q1.push(46)
+print q1.pop()
+print q1.pop()
+print q1.pop()
+q1.push(70)
+print q1.pop()
+print q1.pop()
